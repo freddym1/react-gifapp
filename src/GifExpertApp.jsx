@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import { AddCategory } from './components/AddCategory';
+import { GifGrid } from './components/GifGrid';
 
 export const GifExpertApp = () => {
 
@@ -17,22 +18,19 @@ export const GifExpertApp = () => {
 
     return (
         <>
-            {/* título */}
             <h1>GifExpertApp</h1>
 
-            {/* Input */}
+            {/* componente que envía props y recibe datos del hijo */}
             <AddCategory 
-                // setCategories={setCategories} // op1 envía props setCategories y el hijo procesa 
-                onNewCategory={(event) => onAddCategory(event)} // op1 envía props y recibe datos del hijo
+                onNewCategory={(event) => onAddCategory(event)} 
             /> 
 
-            {/* Listado de elementos */}
-            {/* <button onClick={onAddCategory}>Agregar</button> */}
-            <ol>
-                {categories.map(category => {
-                    return <li key={category}>{category}</li>
-                })}
-            </ol>
+            {/* lectura de las categorías */}
+            {categories.map(category => ( //es un return 
+                    // componente que pinta la grilla
+                    <GifGrid key={category} category={category}/>
+                ))
+            }
         </>
     )
 }
