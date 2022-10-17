@@ -1,22 +1,13 @@
 import { useEffect, useState } from "react";
 import { GifItem } from "./GifItem";
-import { getGifs } from "./helpers/getGifs";
+// import { getGifs } from "../helpers/getGifs";
+import { useFetchGifs } from "../hooks/useFetchGifs";
 
 export const GifGrid = ({category}) => {
 
-    const [images, setImages] = useState([]);
-
-    const getImages = async() => {
-        const newImages = await getGifs(category); //getGifs tiene la data
-        setImages(newImages);
-    }
-
-    //se aplica el hook useEffect para cargar una sola vez el helper fetch de la data
-    useEffect(() => {
-        getImages();
-    }, []);
-
-    // console.log(images);
+    // custom hook
+    const{ images, isLoading} = useFetchGifs(category);
+    // console.log(images, isLoading);
 
     return (
         <>
