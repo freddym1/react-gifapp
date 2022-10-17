@@ -8,10 +8,9 @@ export const GifExpertApp = () => {
     
     //agregar una categoría al estado
     const onAddCategory = ( newCategory) => {
-        // console.log('Valorant');
-        // se usa setCategories para trabajar con categories
+        if (categories.includes(newCategory)) return; //validar si ya existe el valor
+
         // se trae el array que tenía con ...categories y se agrega el nuevo
-        // setCategories(['Valorant', ...categories]); //opción 1
         // setCategories(cat=>[...cat,'Valorant']); //opción 2
         setCategories([newCategory, ...categories]);
     }
