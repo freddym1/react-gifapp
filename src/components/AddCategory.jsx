@@ -2,7 +2,7 @@ import { useState } from "react";
 // import PropTypes from 'prop-types';
 
 //se toma la props setCategories desestructurada
-export const AddCategory = ({setCategories}) => {
+export const AddCategory = ({/*setCategories*/ onNewCategory}) => {
 
     const [inputValue, setInputValue] = useState('')
 
@@ -21,7 +21,9 @@ export const AddCategory = ({setCategories}) => {
         if (inputValue.trim().length <= 1) return; //validar que se ingrese un valor
 
         //agregar nuevos valores a la lista del padre enviando un callback
-        setCategories(catsActuales => [inputValue, ...catsActuales]);
+        // setCategories(catsActuales => [inputValue, ...catsActuales]);
+
+        onNewCategory(inputValue.trim()); //emite el valor y la acción la realiza el padre
         setInputValue(''); //para dejar la caja vacía
     }
 
