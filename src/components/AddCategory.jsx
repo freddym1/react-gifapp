@@ -1,8 +1,10 @@
 import { useState } from "react";
+// import PropTypes from 'prop-types';
 
-export const AddCategory = () => {
+//se toma la props setCategories desestructurada
+export const AddCategory = ({setCategories}) => {
 
-    const [inputValue, setInputValue] = useState('One Punch')
+    const [inputValue, setInputValue] = useState('')
 
     // const onInputChange = (event) => {
     //     console.log(event.target.value);
@@ -14,11 +16,18 @@ export const AddCategory = () => {
 
     const onSubmit = (event) => {
         event.preventDefault();
-        console.log(inputValue);
+        // console.log(inputValue);
+
+        if (inputValue.trim().length <= 1) return; //validar que se ingrese un valor
+
+        //agregar nuevos valores a la lista del padre enviando un callback
+        setCategories(catsActuales => [inputValue, ...catsActuales]);
+        setInputValue(''); //para dejar la caja vacía
     }
 
     return (
-        <form onSubmit={(event) => onSubmit(event)}>
+        // <form onSubmit={(event) => onSubmit(event)}>
+        <form onSubmit={onSubmit}>
             <input
                 type="text"
                 placeholder="Buscar gifs"

@@ -21,10 +21,11 @@ export const GifExpertApp = () => {
             <h1>GifExpertApp</h1>
 
             {/* Input */}
-            <AddCategory />
+            {/* se pasa la props setCategories para que la reciba el hijo */}
+            <AddCategory setCategories={setCategories} /> 
 
             {/* Listado de elementos */}
-            <button onClick={onAddCategory}>Agregar</button>
+            {/* <button onClick={onAddCategory}>Agregar</button> */}
             <ol>
                 {categories.map(category => {
                     return <li key={category}>{category}</li>
